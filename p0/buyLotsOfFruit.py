@@ -21,6 +21,7 @@ FRUIT_PRICES = {
     'strawberries': 1.00
 }
 
+
 def buyLotsOfFruit(orderList):
     """
     orderList: List of (fruit, weight) tuples
@@ -29,8 +30,17 @@ def buyLotsOfFruit(orderList):
     """
 
     # *** Your Code Here ***
+    cost = 0
+    for x in orderList:
+        if x[0] in FRUIT_PRICES:
+            # do calculation
+            cost += x[1] * FRUIT_PRICES[x[0]]
+        else:
+            print("There's an error in your order.")
+            return None
 
-    return None
+    return cost
+
 
 def main():
     orderList = [
@@ -40,7 +50,7 @@ def main():
     ]
 
     print("Cost of %s is %s." % (orderList, buyLotsOfFruit(orderList)))
-    print("hello world")
+
 
 if __name__ == '__main__':
     main()
