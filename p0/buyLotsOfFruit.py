@@ -40,6 +40,7 @@ def main():
     ]
 
     print("Cost of %s is %s." % (orderList, buyLotsOfFruit(orderList)))
+    print("hello world")
 
 if __name__ == '__main__':
     main()
