@@ -21,24 +21,28 @@ FRUIT_PRICES = {
     'strawberries': 1.00
 }
 
+"""
+orderList: List of (fruit, weight) tuples
+
+Returns cost of order
+"""
+
 
 def buyLotsOfFruit(orderList):
-    """
-    orderList: List of (fruit, weight) tuples
-
-    Returns cost of order
-    """
-
-    # *** Your Code Here ***
+    # initialized variable to hold total cost
     cost = 0
+
+    # iterative through the list
     for x in orderList:
+        # if the first elem in each tuple exists in dictionary
         if x[0] in FRUIT_PRICES:
-            # do calculation
+            # calculates the cost using the price from dict
             cost += x[1] * FRUIT_PRICES[x[0]]
+        # item doesn't exist in dict, prints out error msg and returns none
         else:
             print("There's an error in your order.")
             return None
-
+    # returns total cost
     return cost
 
 
