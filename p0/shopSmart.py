@@ -13,6 +13,7 @@ For orders: [('apples', 3.0)] best shop is shop2.
 
 import shop
 
+
 def shopSmart(orderList, fruitShops):
     """
     orderList: List of (fruit, numPound) tuples
@@ -20,8 +21,23 @@ def shopSmart(orderList, fruitShops):
     """
 
     # *** Your Code Here ***
+    # assume the best shop is the first shop in the list of shops
+    bestShop = fruitShops[0]
+    # assume the min cost of fruits comes from the first shop
+    minCost = bestShop.getPriceOfOrder(orderList)
+    # iterate through all shops in list
+    for shop in fruitShops:
+        # get the cost of the order from each shop
+        cost = shop.getPriceOfOrder(orderList)
+        # update the best shop if current cost is lower
+        if cost < minCost:
+            bestShop = shop
+        # if current price is higher or the same, continue
+        else:
+            continue
+    # we know the best shop to buy from, return
+    return bestShop
 
-    return None
 
 def main():
     dir1 = {
@@ -34,16 +50,19 @@ def main():
         'oranges': 5.0
     }
 
-    shop1 =  shop.FruitShop('shop1', dir1)
+    shop1 = shop.FruitShop('shop1', dir1)
     shop2 = shop.FruitShop('shop2', dir2)
 
     shops = [shop1, shop2]
 
     orders = [('apples', 1.0), ('oranges', 3.0)]
-    print("For orders: %s the best shop is %s." % (orders, shopSmart(orders, shops).getName()))
+    print("For orders: %s the best shop is %s." %
+          (orders, shopSmart(orders, shops).getName()))
 
     orders = [('apples', 3.0)]
-    print("For orders: %s the best shop is %s." % (orders, shopSmart(orders, shops).getName()))
+    print("For orders: %s the best shop is %s." %
+          (orders, shopSmart(orders, shops).getName()))
+
 
 if __name__ == '__main__':
     main()
